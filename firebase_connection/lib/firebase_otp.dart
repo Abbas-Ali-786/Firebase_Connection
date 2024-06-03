@@ -1,3 +1,4 @@
+import 'package:firebase_connection/cloud_firestore_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -19,15 +20,24 @@ class _OTPScreenState extends State<OTPScreen> {
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _auth.signInWithCredential(credential);
         print("Phone number automatically verified and user signed in: ${_auth.currentUser}");
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Phone number automatically verified and user signed in"),
+        ));
       },
       verificationFailed: (FirebaseAuthException e) {
         print("Failed to verify phone number: ${e.message}");
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Failed to verify phone number"),
+        ));
       },
       codeSent: (String verificationId, int? resendToken) {
         setState(() {
           _verificationId = verificationId;
         });
         print("OTP sent to phone number");
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('OTP sent to phone number'),
+        ));
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         setState(() {
@@ -36,6 +46,7 @@ class _OTPScreenState extends State<OTPScreen> {
       },
     );
   }
+
 
   Future<void> _verifyOTP() async {
     if (_verificationId != null) {
@@ -47,26 +58,34 @@ class _OTPScreenState extends State<OTPScreen> {
       await _auth.signInWithCredential(credential);
       print("Phone number verified and user signed in: ${_auth.currentUser}");
 
-      // Show snackbar if verification is successful
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      Navigator.push(context, MaterialPageRoute(builder: (context) => CloudFirestore(),));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('OTP verified successfully'),
       ));
     }
+    else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('OTP Incorrect'),
+      ));
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Firebase OTP Authentication'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
               controller: _phoneController,
-              decoration: const InputDecoration(labelText: 'Phone Number (with country code)'),
+              decoration: const InputDecoration(labelText: 'Phone Number (with country code)[+][92][0123456789]'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
