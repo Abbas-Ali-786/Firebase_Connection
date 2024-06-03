@@ -1,3 +1,4 @@
+import 'package:firebase_connection/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -32,14 +33,20 @@ class _CloudFirestoreState extends State<CloudFirestore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Firestore Example'),
+        title: const Text('Cloud Firestore Example'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            addData();
-          },
-          child: const Text('Add Data to Firestore'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  addData();
+                },
+                child: const Text('Add Data to Firestore'),
+              ),
+          ],
         ),
       ),
     );

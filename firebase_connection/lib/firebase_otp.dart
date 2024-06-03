@@ -58,7 +58,7 @@ class _OTPScreenState extends State<OTPScreen> {
       await _auth.signInWithCredential(credential);
       print("Phone number verified and user signed in: ${_auth.currentUser}");
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) => CloudFirestore(),));
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => CloudFirestore(),));
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('OTP verified successfully'),
       ));
@@ -85,7 +85,7 @@ class _OTPScreenState extends State<OTPScreen> {
           children: [
             TextField(
               controller: _phoneController,
-              decoration: const InputDecoration(labelText: 'Phone Number (with country code)[+][92][0123456789]'),
+              decoration: const InputDecoration(labelText: 'Phone Number e.g.[+][92][0123456789]'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(

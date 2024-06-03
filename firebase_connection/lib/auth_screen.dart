@@ -19,7 +19,7 @@ class _AuthScreenState extends State<AuthScreen> {
         password: _passwordController.text,
       );
       print("User signed in successfully");
-      Navigator.push(context, MaterialPageRoute(builder: (context) => OTPScreen(),));
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => OTPScreen(),));
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('User signed in successfully'),
       ));
