@@ -29,20 +29,17 @@ class _RealtimeDatabaseAppState extends State<RealtimeDatabaseApp> {
     });
   }
 
-
   void createRecord() {
     databaseReference.child("example/data").set({
       'value': "Hello World",
     });
   }
 
-
   void updateData() {
     databaseReference.child("example/data").update({
       'value': "Updated Hello World",
     });
   }
-
 
   void deleteData() {
     databaseReference.child("example/data").remove();
