@@ -31,8 +31,6 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
-
-
   Future<void> _register() async {
     try {
       await _auth.createUserWithEmailAndPassword(
