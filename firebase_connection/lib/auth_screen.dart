@@ -22,6 +22,7 @@ class _AuthScreenState extends State<AuthScreen> {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('User signed in successfully'),
       ));
+
     } on FirebaseAuthException catch (e) {
       print("Failed to sign in with Email & Password: ${e.message}");
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -30,6 +31,7 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
+  
   Future<void> _register() async {
     try {
       await _auth.createUserWithEmailAndPassword(
