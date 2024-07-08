@@ -23,7 +23,7 @@ class _AuthScreenState extends State<AuthScreen> {
         content: Text('User signed in successfully'),
       ));
 
-      
+
     } on FirebaseAuthException catch (e) {
       print("Failed to sign in with Email & Password: ${e.message}");
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
