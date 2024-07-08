@@ -11,7 +11,6 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-
   Future<void> _signIn() async {
     try {
       await _auth.signInWithEmailAndPassword(
@@ -24,6 +23,7 @@ class _AuthScreenState extends State<AuthScreen> {
         content: Text('User signed in successfully'),
       ));
 
+      
     } on FirebaseAuthException catch (e) {
       print("Failed to sign in with Email & Password: ${e.message}");
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
